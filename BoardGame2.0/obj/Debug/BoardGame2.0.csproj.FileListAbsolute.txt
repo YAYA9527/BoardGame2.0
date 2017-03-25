@@ -1,0 +1,7 @@
+D:\project\BoardGame2.0\BoardGame2.0\bin\BoardGame2.0.dll
+D:\project\BoardGame2.0\BoardGame2.0\bin\BoardGame2.0.pdb
+D:\project\BoardGame2.0\BoardGame2.0\bin\Microsoft.Web.Infrastructure.dll
+D:\project\BoardGame2.0\BoardGame2.0\bin\Microsoft.Web.Infrastructure.xml
+D:\project\BoardGame2.0\BoardGame2.0\obj\Debug\BoardGame2.0.csprojResolveAssemblyReference.cache
+D:\project\BoardGame2.0\BoardGame2.0\obj\Debug\BoardGame2.0.dll
+D:\project\BoardGame2.0\BoardGame2.0\obj\Debug\BoardGame2.0.pdb
