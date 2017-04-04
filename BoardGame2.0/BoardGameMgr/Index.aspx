@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="../Scripts/jquery-1.8.2.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+    <script src="../Scripts/jquery-3.2.0.min.js"></script>
     <script>
         function cbSelectAllChanged() {
             var isSelect = $("#cbSelectAll").prop("checked");
