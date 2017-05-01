@@ -25,6 +25,11 @@ namespace testaspnetwebform.BoardGameMgr
             }
         }
 
+        protected string GetResStr(string ResourceName)
+        {
+            return this.GetLocalResourceObject(ResourceName).ToString();
+        }
+
         protected void rptBoardGame_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -45,6 +50,11 @@ namespace testaspnetwebform.BoardGameMgr
         protected void btnAddGameClick(object sender, EventArgs e)
         {
             Response.Redirect("AddEditGame.aspx?Action=Add");
+        }
+
+        protected void btnExportExcelClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

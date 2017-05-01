@@ -12,16 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" href="CSS/bootstrap.min.css" />
     <script src="Scripts/jquery-3.2.0.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>    
-    <script>
-        $(document).ready(function () {
-            console.log("22");
-        });
-        </script>
+    <script src="Scripts/bootstrap.min.js"></script>        
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="height:600px;">
             <iframe src="BoardGameMgr/Index.aspx" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </div>
     </form>

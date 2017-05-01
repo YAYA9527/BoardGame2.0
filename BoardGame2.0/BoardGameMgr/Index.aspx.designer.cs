@@ -31,40 +31,13 @@ namespace testaspnetwebform.BoardGameMgr {
         protected global::System.Web.UI.WebControls.Button btnAddGame;
         
         /// <summary>
-        /// tbKeyWord 控制項。
+        /// btnExportExcel 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbKeyWord;
-        
-        /// <summary>
-        /// ddlPlayer 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlayer;
-        
-        /// <summary>
-        /// rblPrice 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblPrice;
-        
-        /// <summary>
-        /// cblTimeType 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblTimeType;
+        protected global::System.Web.UI.WebControls.Button btnExportExcel;
         
         /// <summary>
         /// btnSearch 控制項。
@@ -74,6 +47,42 @@ namespace testaspnetwebform.BoardGameMgr {
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// rblTime 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblTime;
+        
+        /// <summary>
+        /// cblType 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblType;
+        
+        /// <summary>
+        /// iptRentalDate 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl iptRentalDate;
+        
+        /// <summary>
+        /// ddlPlayer 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlayer;
         
         /// <summary>
         /// rptBoardGame 控制項。

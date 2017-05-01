@@ -120,47 +120,50 @@
   <data name="AddGame" xml:space="preserve">
     <value>新增桌遊</value>
   </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>困難度</value>
+  </data>
   <data name="EmptyData" xml:space="preserve">
     <value>無相關資料</value>
+  </data>
+  <data name="ExploreGame" xml:space="preserve">
+    <value>探索遊戲</value>
+  </data>
+  <data name="ExportExcel" xml:space="preserve">
+    <value>匯出Excel</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>功能</value>
   </data>
   <data name="GameName" xml:space="preserve">
     <value>桌遊名稱</value>
   </data>
   <data name="GamePlayer" xml:space="preserve">
-    <value>人數</value>
+    <value>適合人數</value>
   </data>
-  <data name="GamePrice" xml:space="preserve">
-    <value>原價</value>
+  <data name="GameTime" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="Interaction" xml:space="preserve">
+    <value>互動性</value>
   </data>
   <data name="KeyWord" xml:space="preserve">
     <value>關鍵字</value>
   </data>
-  <data name="KeyWordTip" xml:space="preserve">
-    <value>關鍵字可輸入桌遊名稱</value>
+  <data name="Long" xml:space="preserve">
+    <value>長(&gt;60)</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運氣性</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>中(30-60)&amp;nbsp;</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>序號</value>
   </data>
-  <data name="Price0" xml:space="preserve">
-    <value>不拘</value>
-  </data>
-  <data name="Price1000" xml:space="preserve">
-    <value>501元到1000元</value>
-  </data>
-  <data name="Price1500" xml:space="preserve">
-    <value>1001元到1500元</value>
-  </data>
-  <data name="Price2000" xml:space="preserve">
-    <value>1501到2000元</value>
-  </data>
-  <data name="Price500" xml:space="preserve">
-    <value>500元以下</value>
-  </data>
-  <data name="PriceOther" xml:space="preserve">
-    <value>2001元以上</value>
-  </data>
   <data name="RentalDate" xml:space="preserve">
-    <value>可出租日期</value>
+    <value>租借日期</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>
@@ -168,16 +171,31 @@
   <data name="SelectAllOrNot" xml:space="preserve">
     <value>全選/取消</value>
   </data>
-  <data name="TimeType" xml:space="preserve">
-    <value>時間類型</value>
+  <data name="Short" xml:space="preserve">
+    <value>短(&lt;30)&amp;nbsp;</value>
+  </data>
+  <data name="Strategy" xml:space="preserve">
+    <value>策略性</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>類型</value>
   </data>
   <data name="Type1" xml:space="preserve">
-    <value>短</value>
+    <value>派對型&amp;nbsp;</value>
   </data>
   <data name="Type2" xml:space="preserve">
-    <value>中</value>
+    <value>策略型&amp;nbsp;</value>
   </data>
   <data name="Type3" xml:space="preserve">
-    <value>長</value>
+    <value>主題型&amp;nbsp;</value>
+  </data>
+  <data name="Type4" xml:space="preserve">
+    <value>家庭型&amp;nbsp;</value>
+  </data>
+  <data name="Type5" xml:space="preserve">
+    <value>抽象型</value>
   </data>
 </root>
