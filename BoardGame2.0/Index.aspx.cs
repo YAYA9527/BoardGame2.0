@@ -11,7 +11,14 @@ namespace BoardGame2._0
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {                
+            }
+        }
 
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BoardGameMgr/Index.aspx");
         }
     }
 }

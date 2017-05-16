@@ -31,58 +31,103 @@ namespace testaspnetwebform.BoardGameMgr {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdd;
         
         /// <summary>
-        /// tbGameName 控制項。
+        /// ddlGameTime 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbGameName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGameTime;
         
         /// <summary>
-        /// tbGamePrice 控制項。
+        /// ddlType 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbGamePrice;
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
-        /// ddlPlayerMin 控制項。
+        /// btnAddType 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlayerMin;
+        protected global::System.Web.UI.WebControls.Button btnAddType;
         
         /// <summary>
-        /// ddlPlayerMax 控制項。
+        /// ddlMinPlayer 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlayerMax;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMinPlayer;
         
         /// <summary>
-        /// iptRentalDate 控制項。
+        /// ddlMaxPlayer 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl iptRentalDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMaxPlayer;
         
         /// <summary>
-        /// rblTimeType 控制項。
+        /// iptRentalStartDate 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblTimeType;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl iptRentalStartDate;
+        
+        /// <summary>
+        /// txtRent 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtRent;
+        
+        /// <summary>
+        /// txtDeposit 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDeposit;
+        
+        /// <summary>
+        /// txtTeachingUrl 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTeachingUrl;
+        
+        /// <summary>
+        /// GamePhotoFile 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload GamePhotoFile;
+        
+        /// <summary>
+        /// taDescription 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 將移動欄位宣告從設計檔案修改為程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea taDescription;
         
         /// <summary>
         /// btnSubmit 控制項。

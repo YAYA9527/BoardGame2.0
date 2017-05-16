@@ -117,37 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddGame" xml:space="preserve">
+    <value>新增桌遊</value>
+  </data>
+  <data name="AddType" xml:space="preserve">
+    <value>新增類型</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>押金</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>簡介</value>
+  </data>
+  <data name="Difficulty" xml:space="preserve">
+    <value>困難度</value>
+  </data>
+  <data name="GameMaxPlayer" xml:space="preserve">
+    <value>最多人數</value>
+  </data>
+  <data name="GameMinPlayer" xml:space="preserve">
+    <value>最少人數</value>
   </data>
   <data name="GameName" xml:space="preserve">
     <value>桌遊名稱</value>
   </data>
-  <data name="GamePrice" xml:space="preserve">
-    <value>原價</value>
+  <data name="GamePhoto" xml:space="preserve">
+    <value>桌遊圖</value>
   </data>
-  <data name="PlayerMax" xml:space="preserve">
-    <value>人數上限</value>
+  <data name="GameTime" xml:space="preserve">
+    <value>時間</value>
   </data>
-  <data name="PlayerMin" xml:space="preserve">
-    <value>人數下限</value>
+  <data name="Interaction" xml:space="preserve">
+    <value>互動性</value>
   </data>
-  <data name="RentalDate" xml:space="preserve">
-    <value>可出租日期</value>
+  <data name="Luck" xml:space="preserve">
+    <value>運氣性</value>
+  </data>
+  <data name="Player1" xml:space="preserve">
+    <value>1人</value>
+  </data>
+  <data name="Player10" xml:space="preserve">
+    <value>10人</value>
+  </data>
+  <data name="Player2" xml:space="preserve">
+    <value>2人</value>
+  </data>
+  <data name="Player3" xml:space="preserve">
+    <value>3人</value>
+  </data>
+  <data name="Player4" xml:space="preserve">
+    <value>4人</value>
+  </data>
+  <data name="Player5" xml:space="preserve">
+    <value>5人</value>
+  </data>
+  <data name="Player6" xml:space="preserve">
+    <value>6人</value>
+  </data>
+  <data name="Player7" xml:space="preserve">
+    <value>7人</value>
+  </data>
+  <data name="Player8" xml:space="preserve">
+    <value>8人</value>
+  </data>
+  <data name="Player9" xml:space="preserve">
+    <value>9人</value>
+  </data>
+  <data name="Rent" xml:space="preserve">
+    <value>租金</value>
+  </data>
+  <data name="RentalStartDate" xml:space="preserve">
+    <value>租借開始日</value>
+  </data>
+  <data name="Strategy" xml:space="preserve">
+    <value>策略性</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>送出</value>
   </data>
-  <data name="TimeType" xml:space="preserve">
-    <value>時間類型</value>
+  <data name="TeachingUrl" xml:space="preserve">
+    <value>教學網址</value>
   </data>
-  <data name="Type1" xml:space="preserve">
-    <value>短</value>
+  <data name="Time1" xml:space="preserve">
+    <value>15分</value>
   </data>
-  <data name="Type2" xml:space="preserve">
-    <value>中</value>
+  <data name="Time2" xml:space="preserve">
+    <value>30分</value>
   </data>
-  <data name="Type3" xml:space="preserve">
-    <value>長</value>
+  <data name="Time3" xml:space="preserve">
+    <value>45分</value>
+  </data>
+  <data name="Time4" xml:space="preserve">
+    <value>60分</value>
+  </data>
+  <data name="Time5" xml:space="preserve">
+    <value>75分</value>
+  </data>
+  <data name="Time6" xml:space="preserve">
+    <value>90分</value>
+  </data>
+  <data name="Time7" xml:space="preserve">
+    <value>105分</value>
+  </data>
+  <data name="Time8" xml:space="preserve">
+    <value>120分</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>類型</value>
   </data>
 </root>

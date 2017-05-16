@@ -16,6 +16,12 @@
             debugger
         }
     </script>
+    <style>
+        /*取代Bootstrap的CSS，同分但內部>外部*/
+        .checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
+            margin-left: 0px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,7 +35,7 @@
                 </div>
             </div>
             <div class="row row-offset">
-                <label for="txtKeyWord" class="col-xs-3 col-sm-3 lbl-text-position">
+                <label for="txtKeyWord" class="col-xs-3 col-sm-3 label-text-right">
                     <%=GetResStr("KeyWord")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
@@ -37,57 +43,72 @@
                 </div>
             </div>
             <div class="row row-offset">
-                <label for="rblTime" class="col-xs-3 col-sm-3 lbl-text-position">
-                    <%=GetResStr("Time")%>：
+                <label for="ddlPlayer" class="col-xs-3 col-sm-3 label-text-right">
+                    <%=GetResStr("GamePlayer")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
-                    <asp:RadioButtonList ID="rblTime" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem Value="1" Text="<%$ Resources:Short %>" Selected="True" />
-                        <asp:ListItem Value="2" Text="<%$ Resources:Middle %>" />
-                        <asp:ListItem Value="3" Text="<%$ Resources:Long %>" />
-                    </asp:RadioButtonList>
+                    <asp:DropDownList ID="ddlPlayer" runat="server" CssClass="form-control">
+                        <asp:ListItem Text="" Value="0" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player1 %>" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player2 %>" Value="2"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player3 %>" Value="3"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player4 %>" Value="4"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player5 %>" Value="5"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player6 %>" Value="6"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player7 %>" Value="7"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player8 %>" Value="8"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player9 %>" Value="9"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Player10 %>" Value="10"></asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="row row-offset">
-                <label for="cblType" class="col-xs-3 col-sm-3 lbl-text-position">
+                <label for="rdoTime" class="col-xs-3 col-sm-3 label-text-right">
+                    <%=GetResStr("GameTime")%>：
+                </label>
+                <div class="col-xs-6 col-sm-6">
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoTime" value="1" checked><%=GetResStr("Short")%>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoTime" value="2"><%=GetResStr("Middle")%>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoTime" value="3"><%=GetResStr("LittleLong")%>
+                    </label>
+                     <label class="radio-inline">
+                        <input type="radio" name="rdoTime" value="4"><%=GetResStr("Long")%>
+                    </label>
+                </div>
+            </div>
+            <div class="row row-offset">
+                <label for="cblType" class="col-xs-3 col-sm-3 label-text-right">
                     <%=GetResStr("Type")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
-                    <asp:CheckBoxList ID="cblType" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem Value="1" Text="<%$ Resources:Type1 %>" />
-                        <asp:ListItem Value="2" Text="<%$ Resources:Type2 %>" />
-                        <asp:ListItem Value="3" Text="<%$ Resources:Type3 %>" />
-                        <asp:ListItem Value="4" Text="<%$ Resources:Type4 %>" />
-                        <asp:ListItem Value="5" Text="<%$ Resources:Type5 %>" />
-                    </asp:CheckBoxList>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="cblType" value="1"><%=GetResStr("Type1")%>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="cblType" value="2"><%=GetResStr("Type2")%>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="cblType" value="3"><%=GetResStr("Type3")%>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="cblType" value="4"><%=GetResStr("Type4")%>
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="cblType" value="5"><%=GetResStr("Type5")%>
+                    </label>
                 </div>
             </div>
             <div class="row row-offset">
-                <label for="iptRentalDate" class="col-xs-3 col-sm-3 lbl-text-position">
+                <label for="iptRentalDate" class="col-xs-3 col-sm-3 label-text-right">
                     <%=GetResStr("RentalDate")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <input id="iptRentalDate" runat="server" type="date" />
-                </div>
-            </div>
-            <div class="row row-offset">
-                <label for="ddlPlayer" class="col-xs-3 col-sm-3 lbl-text-position">
-                    <%=GetResStr("GamePlayer")%>：
-                </label>
-                <div class="col-xs-6 col-sm-6">
-                    <asp:DropDownList ID="ddlPlayer" runat="server">
-                        <asp:ListItem Text="" Value="0" Selected="True"></asp:ListItem>
-                        <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="3" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="4" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="5" Value="5"></asp:ListItem>
-                        <asp:ListItem Text="6" Value="6"></asp:ListItem>
-                        <asp:ListItem Text="7" Value="7"></asp:ListItem>
-                        <asp:ListItem Text="8" Value="8"></asp:ListItem>
-                        <asp:ListItem Text="9" Value="9"></asp:ListItem>
-                        <asp:ListItem Text="10" Value="10"></asp:ListItem>
-                    </asp:DropDownList>
                 </div>
             </div>
         </fieldset>
@@ -96,16 +117,16 @@
                 <HeaderTemplate>
                     <table style="text-align: center;" class="table">
                         <tr style="background-color: #449d44; color: white;">
-                            <td width="5%" id="HeaderTdSelectAll" runat="server">
+                            <td width="10%" id="HeaderTdSelectAll" runat="server">
                                 <input type="checkbox" id="cbSelectAll" onchange="cbSelectAllChanged()" />
-                                <asp:Literal ID="ltlSelectAllOrNot" runat="server" Text="<%$ Resources:SelectAllOrNot %>"></asp:Literal>
+                                <asp:Literal ID="ltlSelectAllOrNot" runat="server" Text="V / X"></asp:Literal>
                             </td>
                             <td width="5%">
                                 <asp:Literal ID="ltlNo" runat="server" Text="<%$ Resources:No %>"></asp:Literal>
                             </td>
                             <td width="10%">
                                 <asp:Literal ID="ltlGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:Literal>
-                            </td>                            
+                            </td>
                             <td width="10%">
                                 <asp:Literal ID="ltlGamePlayer" runat="server" Text="<%$ Resources:GamePlayer %>"></asp:Literal>
                             </td>
@@ -141,13 +162,25 @@
                             <%# Eval("Name") %>
                         </td>
                         <td>
-                            <%# Eval("Price") %>
+                            <asp:Literal ID="ltlGamePlayerValue" runat="server"></asp:Literal>
                         </td>
                         <td>
-                            <asp:Literal ID="ltlPlayerValue" runat="server"></asp:Literal>
+                            <%# Eval("Time") %>
                         </td>
                         <td>
-                            <asp:Literal ID="ltlRentalDateValue" runat="server"></asp:Literal>
+                            <%# Eval("Difficulty") %>
+                        </td>
+                        <td>
+                            <%# Eval("Luck") %>
+                        </td>
+                        <td>
+                            <%# Eval("Strategy") %>
+                        </td>
+                        <td>
+                            <%# Eval("Interaction") %>
+                        </td>
+                        <td>
+                            <asp:Literal ID="ltlFunctionValue" runat="server"></asp:Literal>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -158,7 +191,7 @@
                         </td>
                     </tr>
                 </SeparatorTemplate>--%>
-                <AlternatingItemTemplate>
+                <%--<AlternatingItemTemplate>
                     <tr style="background-color: #e8e8e8;">
                         <td>
                             <asp:CheckBox runat="server" ID="cbSelect" />
@@ -179,7 +212,7 @@
                             <asp:Literal ID="ltlRentalDateValue" runat="server"></asp:Literal>
                         </td>
                     </tr>
-                </AlternatingItemTemplate>
+                </AlternatingItemTemplate>--%>
                 <FooterTemplate>
                     </table>
                 </FooterTemplate>

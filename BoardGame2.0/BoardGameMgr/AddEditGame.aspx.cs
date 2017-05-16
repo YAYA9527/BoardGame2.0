@@ -28,23 +28,28 @@ namespace testaspnetwebform.BoardGameMgr
             }
         }
 
+        protected string GetResStr(string ResourceName)
+        {
+            return this.GetLocalResourceObject(ResourceName).ToString();
+        }
+
         protected void btnSubmitClick(object sender, EventArgs e)
         {
             if (Action == "Add")
             {
-                string sql = string.Format("insert into BoardGame values('{0}',{1},{2},{3},'{4}',{5})", tbGameName.Text, tbGamePrice.Text,
-                    ddlPlayerMax.SelectedValue, ddlPlayerMin.SelectedValue, iptRentalDate.Value, rblTimeType.SelectedValue);
-                dl.Query(sql);
+                //string sql = string.Format("insert into BoardGame values('{0}',{1},{2},{3},'{4}',{5})", tbGameName.Text, tbGamePrice.Text,
+                //    ddlPlayerMax.SelectedValue, ddlPlayerMin.SelectedValue, iptRentalDate.Value, rblTimeType.SelectedValue);
+                //dl.Query(sql);
             }
             else
             {
-                
+
             }
         }
 
-        protected void btnCancelClick(object sender, EventArgs e)
+        protected void btnAddTypeClick(object sender, EventArgs e)
         {
-            Response.Redirect("Index.aspx");
+            
         }
     }
 }

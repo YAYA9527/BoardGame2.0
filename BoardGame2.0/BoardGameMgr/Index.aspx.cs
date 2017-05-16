@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using testaspnetwebform.DataBase;
 
@@ -19,7 +20,7 @@ namespace testaspnetwebform.BoardGameMgr
         {
             if (!IsPostBack)
             {
-                DataSet myBoardGameData = dl.QueryDataSet("select * from BoardGame");
+                DataSet myBoardGameData = dl.QueryDataSet("select * from GameBasicInfo");
                 rptBoardGame.DataSource = myBoardGameData;
                 rptBoardGame.DataBind();
             }
@@ -48,7 +49,7 @@ namespace testaspnetwebform.BoardGameMgr
         }
 
         protected void btnAddGameClick(object sender, EventArgs e)
-        {
+        {            
             Response.Redirect("AddEditGame.aspx?Action=Add");
         }
 

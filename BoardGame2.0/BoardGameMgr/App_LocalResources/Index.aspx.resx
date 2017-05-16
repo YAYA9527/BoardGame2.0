@@ -150,17 +150,50 @@
   <data name="KeyWord" xml:space="preserve">
     <value>關鍵字</value>
   </data>
+  <data name="LittleLong" xml:space="preserve">
+    <value>略長(60-90)</value>
+  </data>
   <data name="Long" xml:space="preserve">
-    <value>長(&gt;60)</value>
+    <value>長(&gt;90)</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運氣性</value>
   </data>
   <data name="Middle" xml:space="preserve">
-    <value>中(30-60)&amp;nbsp;</value>
+    <value>中(30-60)</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>序號</value>
+  </data>
+  <data name="Player1" xml:space="preserve">
+    <value>1人</value>
+  </data>
+  <data name="Player10" xml:space="preserve">
+    <value>10人</value>
+  </data>
+  <data name="Player2" xml:space="preserve">
+    <value>2人</value>
+  </data>
+  <data name="Player3" xml:space="preserve">
+    <value>3人</value>
+  </data>
+  <data name="Player4" xml:space="preserve">
+    <value>4人</value>
+  </data>
+  <data name="Player5" xml:space="preserve">
+    <value>5人</value>
+  </data>
+  <data name="Player6" xml:space="preserve">
+    <value>6人</value>
+  </data>
+  <data name="Player7" xml:space="preserve">
+    <value>7人</value>
+  </data>
+  <data name="Player8" xml:space="preserve">
+    <value>8人</value>
+  </data>
+  <data name="Player9" xml:space="preserve">
+    <value>9人</value>
   </data>
   <data name="RentalDate" xml:space="preserve">
     <value>租借日期</value>
@@ -168,32 +201,26 @@
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>
   </data>
-  <data name="SelectAllOrNot" xml:space="preserve">
-    <value>全選/取消</value>
-  </data>
   <data name="Short" xml:space="preserve">
-    <value>短(&lt;30)&amp;nbsp;</value>
+    <value>短(&lt;30)</value>
   </data>
   <data name="Strategy" xml:space="preserve">
     <value>策略性</value>
-  </data>
-  <data name="Time" xml:space="preserve">
-    <value>時間</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>類型</value>
   </data>
   <data name="Type1" xml:space="preserve">
-    <value>派對型&amp;nbsp;</value>
+    <value>派對型</value>
   </data>
   <data name="Type2" xml:space="preserve">
-    <value>策略型&amp;nbsp;</value>
+    <value>策略型</value>
   </data>
   <data name="Type3" xml:space="preserve">
-    <value>主題型&amp;nbsp;</value>
+    <value>主題型</value>
   </data>
   <data name="Type4" xml:space="preserve">
-    <value>家庭型&amp;nbsp;</value>
+    <value>家庭型</value>
   </data>
   <data name="Type5" xml:space="preserve">
     <value>抽象型</value>

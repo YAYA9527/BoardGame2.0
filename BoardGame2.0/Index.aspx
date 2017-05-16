@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="CSS/bootstrap.min.css" />
     <script src="Scripts/jquery-3.2.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>        
+    <script>
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <div style="height:150px;background-color:green;"></div>
         <div style="height:600px;">
-            <iframe src="BoardGameMgr/Index.aspx" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+            <iframe id="MainContent" src="BoardGameMgr/Index.aspx" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
         </div>
     </form>
 </body>
