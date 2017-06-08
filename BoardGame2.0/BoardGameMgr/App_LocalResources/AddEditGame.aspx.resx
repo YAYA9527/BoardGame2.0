@@ -121,10 +121,13 @@
     <value>新增桌遊</value>
   </data>
   <data name="AddType" xml:space="preserve">
-    <value>新增類型</value>
+    <value>新增</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="DelType" xml:space="preserve">
+    <value>刪除</value>
   </data>
   <data name="Deposit" xml:space="preserve">
     <value>押金</value>
@@ -145,7 +148,7 @@
     <value>桌遊名稱</value>
   </data>
   <data name="GamePhoto" xml:space="preserve">
-    <value>桌遊圖</value>
+    <value>縮圖</value>
   </data>
   <data name="GameTime" xml:space="preserve">
     <value>時間</value>
@@ -192,6 +195,9 @@
   <data name="RentalStartDate" xml:space="preserve">
     <value>租借開始日</value>
   </data>
+  <data name="SelectPhoto" xml:space="preserve">
+    <value>選擇檔案</value>
+  </data>
   <data name="Strategy" xml:space="preserve">
     <value>策略性</value>
   </data>
@@ -227,5 +233,8 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>類型</value>
+  </data>
+  <data name="Uplaod" xml:space="preserve">
+    <value>上傳</value>
   </data>
 </root>

@@ -20,7 +20,7 @@ namespace testaspnetwebform.BoardGameMgr
         {
             if (!IsPostBack)
             {
-                DataSet myBoardGameData = dl.QueryDataSet("select * from GameBasicInfo");
+                DataSet myBoardGameData = dl.QueryDataSet("select * from GameBasicInfo", "GameBasicInfoResult");
                 rptBoardGame.DataSource = myBoardGameData;
                 rptBoardGame.DataBind();
             }
@@ -49,8 +49,8 @@ namespace testaspnetwebform.BoardGameMgr
         }
 
         protected void btnAddGameClick(object sender, EventArgs e)
-        {            
-            Response.Redirect("AddEditGame.aspx?Action=Add");
+        {
+            Response.Redirect("~/BoardGameMgr/AddEditGame.aspx?Action=Add");
         }
 
         protected void btnExportExcelClick(object sender, EventArgs e)

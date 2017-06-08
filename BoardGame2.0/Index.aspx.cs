@@ -18,7 +18,7 @@ namespace BoardGame2._0
 
         protected void Unnamed_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BoardGameMgr/Index.aspx");
+            Response.Redirect("~/BoardGameMgr/Index.aspx");
         }
     }
 }

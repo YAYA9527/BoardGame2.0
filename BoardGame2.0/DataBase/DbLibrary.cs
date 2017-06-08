@@ -22,11 +22,10 @@ namespace testaspnetwebform.DataBase
             connect.Open();
         }
 
-        public DataSet QueryDataSet(string sql)
+        public DataSet QueryDataSet(string sql, string resultTable)
         {
             da = new SqlDataAdapter(sql, connect);
-            da.Fill(dsResult, "Result");
-            connect.Close();
+            da.Fill(dsResult, resultTable);
             return dsResult;
         }
 
@@ -34,7 +33,6 @@ namespace testaspnetwebform.DataBase
         {
             sqlCmd = new SqlCommand(sql, connect);
             sqlCmd.ExecuteNonQuery();
-            connect.Close();
         }
     }
 }
