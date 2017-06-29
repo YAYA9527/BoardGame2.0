@@ -264,4 +264,10 @@
   <data name="Yes" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="SaveFailure" xml:space="preserve">
+    <value>儲存失敗，點擊確定按鈕後會下載錯誤訊息</value>
+  </data>
+  <data name="SaveSuccess" xml:space="preserve">
+    <value>儲存成功</value>
+  </data>
 </root>

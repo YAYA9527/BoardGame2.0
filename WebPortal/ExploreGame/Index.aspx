@@ -12,8 +12,8 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script>
         function cbSelectAllChanged() {
-            var isSelect = $("#cbSelectAll").prop("checked");
             debugger
+            var isSelect = $("#cbSelectAll").prop("checked");
         }
     </script>
     <style>
@@ -159,7 +159,7 @@
                             <%# Container.ItemIndex+1 %>
                         </td>
                         <td>
-                            <%# Eval("Name") %>
+                            <%# Eval("GameName") %>
                         </td>
                         <td>
                             <asp:Literal ID="ltlGamePlayerValue" runat="server"></asp:Literal>

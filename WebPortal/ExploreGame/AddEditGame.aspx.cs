@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -37,7 +38,7 @@ public partial class ExploreGame_AddEditGame : BgwPage
             lblPhotoName.Text = GamePhotoFile.FileName;
         }
 
-        //桌遊類型
+        //類型
         string[] DelPKs = hfDelTypePKs.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         DataSet DsGameTypes = DbLibraryControl.QueryDataSet("select TI.* from Tree as T inner join TreeItem as TI on TI.TreePK = T.PK where T.Name = 'GameType'", "GameTypesResult");
         if (DsGameTypes.Tables["GameTypesResult"].Rows.Count != 0)
@@ -75,6 +76,7 @@ public partial class ExploreGame_AddEditGame : BgwPage
 
     protected void btnSubmitClick(object sender, EventArgs e)
     {
+        string LogPK = "0";
         GameBasicInfoStorage GBIS = new GameBasicInfoStorage();
         GBIS.GameName = txtGameName.Value.Trim();
         GBIS.Time = Convert.ToUInt16(ddlGameTime.SelectedValue);
@@ -86,7 +88,7 @@ public partial class ExploreGame_AddEditGame : BgwPage
         GBIS.Luck = Convert.ToUInt16(hfLuck.Value);
         GBIS.Strategy = Convert.ToUInt16(hfStrategy.Value);
         GBIS.Interaction = Convert.ToUInt16(hfInteraction.Value);
-        GBIS.IsOpen = (hfIsOpen.Value == "0") ? false : true;
+        GBIS.IsOpen = Convert.ToUInt16(hfIsOpen.Value);
         GBIS.Rent = (string.IsNullOrEmpty(txtRent.Value)) ? -1 : Convert.ToUInt16(txtRent.Value);
         GBIS.Deposit = (string.IsNullOrEmpty(txtDeposit.Value)) ? -1 : Convert.ToUInt16(txtDeposit.Value);
         GBIS.TeachingUrl = txtTeachingUrl.Value;
@@ -94,7 +96,11 @@ public partial class ExploreGame_AddEditGame : BgwPage
          if (Session["FileUploadControl"] != null)
          {
              FileUpload FileUploadControl = (FileUpload)Session["FileUploadControl"];
-             FileUploadControl.SaveAs(Server.MapPath("Images/" + FileUploadControl.FileName));
+             if (File.Exists(Server.MapPath("~/Images/" + FileUploadControl.FileName)))
+             {
+                 File.Delete(Server.MapPath("~/Images/" + FileUploadControl.FileName));
+             } 
+             FileUploadControl.SaveAs(Server.MapPath("~/Images/" + FileUploadControl.FileName));
              GBIS.ImgName = FileUploadControl.FileName;
          }
          else
@@ -104,16 +110,44 @@ public partial class ExploreGame_AddEditGame : BgwPage
 
         if (Action == "Add")
         {
-            //string sql = string.Format("insert into BoardGame values('{0}',{1},{2},{3},'{4}',{5})", tbGameName.Text, tbGamePrice.Text,
-            //    ddlPlayerMax.SelectedValue, ddlPlayerMin.SelectedValue, iptRentalDate.Value, rblTimeType.SelectedValue);
-            //dl.Query(sql);
-           
-            
+            LogPK = GBIS.SaveAsNew("AddEditGame");                        
         }
         else
         {
-
+            LogPK = GBIS.Save("AddEditGame");       
         }
+
+        if (LogPK == "0")
+        {
+            Session["FileUploadControl"] = null;
+            string strScript = string.Format("alert('{0}');window.location='{1}'", GetLocalResourceObject("SaveSuccess").ToString(), "Index.aspx");
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "", strScript, true);
+        }
+        else
+        {
+            hfLogPK.Value = LogPK;
+        }
+    }
+
+    protected void btnDownloadClick(object sender, EventArgs e)
+    {        
+        DataSet DsErrorMsg = DbLibraryControl.QueryDataSet("select ErrorMsg from Log where PK = " + hfLogPK.Value, "ErrorMsgResult");
+        string Content = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" + Environment.NewLine + "<ErrorMsg>" + Environment.NewLine;
+        Content += DsErrorMsg.Tables["ErrorMsgResult"].Rows[0]["ErrorMsg"].ToString();
+        Content += Environment.NewLine + "</ErrorMsg>";
+
+        //下載錯誤訊息(直接到指定路徑)
+        //StreamWriter SwControl = new StreamWriter("D:/project/BoardGame2.0/WebData/Log/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xml", false, System.Text.Encoding.UTF8);
+        //SwControl.Write(Content);
+        //SwControl.Flush();
+        //SwControl.Close();
+
+        //下載錯誤訊息(使用者自行指定路徑)
+        //檔案類型有下列幾種: application/pdf、application/vnd.ms-excel、application/octet-stream、text/xml、text/HTML、image/JPEG、image/GIF
+        Response.ContentType = "text/xml";
+        Response.AppendHeader("Content-Disposition", "attachment;filename=" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xml");
+        Response.Write(Content);
+        Response.End();
     }
 
     protected void btnCancelClick(object sender, EventArgs e)

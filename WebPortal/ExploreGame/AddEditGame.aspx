@@ -12,6 +12,16 @@
     <script src="../Scripts/jquery-blockUI.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
     <script>
+        $(document).ready(function () {
+            if (window.document.getElementById('<%=hfLogPK.ClientID%>').value != "") {
+                if (confirm('<%=GetResStr("SaveFailure")%>')) {
+                    //執行按鈕的PostBack，參數1為Control ID，參數2為要傳的參數
+                    __doPostBack('<%=btnDownload.ClientID%>', '');
+                }
+                window.document.getElementById('<%=hfLogPK.ClientID%>').value = "";
+            }
+        });
+
         function btnSelectPhotoClick() {
             window.document.getElementById('<%=GamePhotoFile.ClientID%>').click();
         }
@@ -65,6 +75,10 @@
         /*取代Bootstrap的CSS，同分但內部>外部*/
         .checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
             margin-left: 0px;
+        }
+
+        #btnDownload {
+            display:none;
         }
     </style>
 </head>
@@ -324,6 +338,7 @@
                 <div style="text-align: center;">
                     <asp:Button ID="btnSubmit" runat="server" OnClientClick="btnSubmitClick()" OnClick="btnSubmitClick" Text="<%$ Resources:Submit %>" CssClass="btn btn-success" ValidationGroup="Save" />
                     <asp:Button ID="btnCancel" runat="server" OnClick="btnCancelClick" Text="<%$ Resources:Cancel %>" CssClass="btn btn-success" />
+                    <asp:Button ID="btnDownload" runat="server" OnClick="btnDownloadClick" />
                     <asp:ValidationSummary ID="valiSummary" runat="server" ValidationGroup="Save" ShowMessageBox="true" ShowSummary="False" DisplayMode="List" />
                 </div>
             </div>
@@ -335,6 +350,7 @@
         <asp:HiddenField ID="hfStrategy" runat="server" />
         <asp:HiddenField ID="hfInteraction" runat="server" />
         <asp:HiddenField ID="hfIsOpen" runat="server" />
+        <asp:HiddenField ID="hfLogPK" runat="server" />
     </form>
 </body>
 </html>

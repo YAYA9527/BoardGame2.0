@@ -25,11 +25,9 @@ public partial class ExploreGame_Index : BgwPage
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             DataRowView drv = e.Item.DataItem as DataRowView;
-            Literal ltlRentalDateValue = e.Item.FindControl("ltlRentalDateValue") as Literal;
-            Literal ltlPlayerValue = e.Item.FindControl("ltlPlayerValue") as Literal;
+            Literal ltlGamePlayerValue = e.Item.FindControl("ltlGamePlayerValue") as Literal;
 
-            ltlRentalDateValue.Text = Convert.ToDateTime(drv["RentalDate"].ToString()).ToString("yyyy-MM-dd");
-            ltlPlayerValue.Text = drv["PlayerMin"].ToString() + "-" + drv["PlayerMax"].ToString();
+            ltlGamePlayerValue.Text = drv["MinPlayer"].ToString() + "-" + drv["MaxPlayer"].ToString();
         }
     }
 
