@@ -41,27 +41,28 @@ public partial class ExploreGame_AddEditGame : BgwPage
         //類型
         string[] DelPKs = hfDelTypePKs.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         DataSet DsGameTypes = DbLibraryControl.QueryDataSet("select TI.* from Tree as T inner join TreeItem as TI on TI.TreePK = T.PK where T.Name = 'GameType'", "GameTypesResult");
-        if (DsGameTypes.Tables["GameTypesResult"].Rows.Count != 0)
+        foreach (DataRow row in DsGameTypes.Tables["GameTypesResult"].Rows)
         {
-            foreach (DataRow row in DsGameTypes.Tables["GameTypesResult"].Rows)
+            Label lblType = new Label()
             {
-                //刪除的PK不能加入
-                if (DelPKs.Count() == 0 || !DelPKs.Contains(row["PK"].ToString()))
-                {
-                    Label lblType = new Label()
-                    {
-                        CssClass = "checkbox-inline"
-                    };
-                    CheckBox cblType = new CheckBox
-                    {
-                        Text = row["Name"].ToString() + "&nbsp;&nbsp;",
-                        Checked = false
-                    };
-                    cblType.InputAttributes["value"] = row["PK"].ToString();
-                    lblType.Controls.Add(cblType);
-                    divType.Controls.Add(lblType);
-                }
+                CssClass = "checkbox-inline"
+            };
+            CheckBox cblType = new CheckBox
+            {
+                Text = row["Name"].ToString() + "&nbsp;&nbsp;",
+                Checked = false
+            };
+            cblType.InputAttributes["value"] = row["PK"].ToString();
+            
+            //刪除的PK需隱藏
+            if ((DelPKs.Count() != 0) && (DelPKs.Contains(row["PK"].ToString())))
+            {
+                cblType.InputAttributes["style"] = "display:none;";
+                lblType.Style["display"] = "none";
             }
+           
+            lblType.Controls.Add(cblType);
+            divType.Controls.Add(lblType);
         }
 
         if (Action == "Add")
@@ -182,7 +183,7 @@ public partial class ExploreGame_AddEditGame : BgwPage
     {
         if (!string.IsNullOrEmpty(hfDelTypePKs.Value))
         {
-            DbLibraryControl.Query("delete from TreeItem where PK in (" + hfDelTypePKs.Value + ")");
+            DbLibraryControl.Query("delete from TreeItem where PK in (" + hfDelTypePKs.Value + ");delete from GameCategory where TreeItemPK in (" + hfDelTypePKs.Value + ");");
             hfDelTypePKs.Value = "";
         }
     }

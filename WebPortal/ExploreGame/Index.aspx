@@ -39,7 +39,7 @@
                     <%=GetResStr("KeyWord")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
-                    <input type="text" class="form-control" id="txtKeyWord" placeholder="請輸入桌遊名稱...">
+                    <input type="text" class="form-control" id="txtKeyWord" runat="server" placeholder="請輸入桌遊名稱..." />
                 </div>
             </div>
             <div class="row row-offset">
@@ -68,7 +68,10 @@
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="1" checked><%=GetResStr("Short")%>
+                        <input type="radio" name="rdoTime" value="0" checked><%=GetResStr("Any")%>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoTime" value="1"><%=GetResStr("Short")%>
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="rdoTime" value="2"><%=GetResStr("Middle")%>
@@ -85,23 +88,7 @@
                 <label for="cblType" class="col-xs-3 col-sm-3 label-text-right">
                     <%=GetResStr("Type")%>：
                 </label>
-                <div class="col-xs-6 col-sm-6">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="cblType" value="1"><%=GetResStr("Type1")%>
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="cblType" value="2"><%=GetResStr("Type2")%>
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="cblType" value="3"><%=GetResStr("Type3")%>
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="cblType" value="4"><%=GetResStr("Type4")%>
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="cblType" value="5"><%=GetResStr("Type5")%>
-                    </label>
-                </div>
+                <div id="divType" runat="server" class="col-xs-6 col-sm-6"></div>
             </div>
             <div class="row row-offset">
                 <label for="iptRentalDate" class="col-xs-3 col-sm-3 label-text-right">

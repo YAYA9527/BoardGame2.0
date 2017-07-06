@@ -120,6 +120,9 @@
   <data name="AddGame" xml:space="preserve">
     <value>新增桌遊</value>
   </data>
+  <data name="Any" xml:space="preserve">
+    <value>不拘</value>
+  </data>
   <data name="Difficulty" xml:space="preserve">
     <value>困難度</value>
   </data>
@@ -209,20 +212,5 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>類型</value>
-  </data>
-  <data name="Type1" xml:space="preserve">
-    <value>派對型</value>
-  </data>
-  <data name="Type2" xml:space="preserve">
-    <value>策略型</value>
-  </data>
-  <data name="Type3" xml:space="preserve">
-    <value>主題型</value>
-  </data>
-  <data name="Type4" xml:space="preserve">
-    <value>家庭型</value>
-  </data>
-  <data name="Type5" xml:space="preserve">
-    <value>抽象型</value>
   </data>
 </root>
