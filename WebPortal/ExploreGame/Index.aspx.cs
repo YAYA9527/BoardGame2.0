@@ -14,7 +14,7 @@ public partial class ExploreGame_Index : BgwPage
     {
         if (!IsPostBack)
         {
-            DataSet myBoardGameData = DbLibraryControl.QueryDataSet("select * from GameBasicInfo where IsOpen = 1 and RentalStartDate <= GetDate()", "GameBasicInfoResult");
+            DataSet myBoardGameData = DbLibraryControl.QueryDataSet("select * from GameBasicInfo where IsOpen = 1", "GameBasicInfoResult");
             rptBoardGame.DataSource = myBoardGameData;
             rptBoardGame.DataBind();
         }
@@ -51,16 +51,53 @@ public partial class ExploreGame_Index : BgwPage
 
     protected void btnSearchClick(object sender, EventArgs e)
     {
-        string SearchSql = string.Format(@"select distinct GBI.* from GameBasicInfo as GBI 
-            left join GameCategory as GC on GC.GamePK = GBI.PK
-            where ({0} = 'NULL' or GBI.GameName like '%{0}%') and
-                        ({1} = 0 or GBI.MinPlayer <= {1}) and ({1} = 0 or GBI.MaxPlayer >= {1}) and 
-                        ({2} = 0 or GBI.Time >= {2}) and ({3} = 0 or GBI.Time <= {3}) and 
-                        ({4} = -1 or GC.TreeItemPK = {4}) and ({5} = 'NULL' or GBI.RentalStartDate <= {5})",
+        //時間上下限
+        int TimeDownLimit = 0;
+        int TimeUpLimit = 0;
+        if (Request.Form["rdoTime"].ToString() == "1")
+        {
+            TimeUpLimit = 29;
+        }
+        else if(Request.Form["rdoTime"].ToString() == "2")
+        {
+            TimeDownLimit = 30;
+            TimeUpLimit = 60;
+        }
+        else if(Request.Form["rdoTime"].ToString() == "3")
+        {
+            TimeDownLimit = 60;
+            TimeUpLimit = 90;
+        }
+        else if(Request.Form["rdoTime"].ToString() == "4")
+        {
+            TimeDownLimit = 91;
+        }
+
+        string SearchSql = string.Format(@"
+            select distinct GBI.* 
+            from GameBasicInfo as GBI 
+                left join GameCategory as GC on GC.GamePK = GBI.PK
+            where (GBI.IsOpen = 1) and ('{0}' = 'NULL' or GBI.GameName like N'%{0}%') and
+                       ({1} = 0 or GBI.MinPlayer <= {1}) and ({1} = 0 or GBI.MaxPlayer >= {1}) and 
+                       ({2} = 0 or GBI.Time >= {2}) and ({3} = 0 or GBI.Time <= {3}) and 
+                       ('{4}' = 'NULL' or GC.TreeItemPK in ({4})) and ('{5}' = 'NULL' or GBI.RentalStartDate <= '{5}  00:00:00')",
              (string.IsNullOrEmpty(txtKeyWord.Value.Trim())) ? "NULL" : txtKeyWord.Value.Trim(),
              Convert.ToUInt16(ddlPlayer.SelectedValue),
-             );
-        rptBoardGame.DataSource = DbLibraryControl.QueryDataSet(SearchSql, "SearchDataResult");
+             TimeDownLimit,
+             TimeUpLimit,
+             hfSelectedTypePKs.Value,
+             (string.IsNullOrEmpty(iptRentalDate.Value)) ? "NULL" : iptRentalDate.Value
+        );
+        
+        DataSet mySearchData = DbLibraryControl.QueryDataSet(SearchSql, "SearchDataResult");
+        if (mySearchData.Tables["SearchDataResult"].Rows.Count == 0)
+        {
+            rptBoardGame.DataSource = "";
+        }
+        else
+        {
+            rptBoardGame.DataSource = mySearchData.Tables["SearchDataResult"];
+        }
         rptBoardGame.DataBind();       
     }
 

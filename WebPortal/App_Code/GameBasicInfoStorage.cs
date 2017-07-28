@@ -51,8 +51,8 @@ public class GameBasicInfoStorage
         
         try
         {
-            DsAddGameResult = DbLibraryControl.QueryDataSet(string.Format(@"insert into GameBasicInfo values ('{0}',{1},{2},{3},{4},{5},{6},{7},
-                        '{8}',{9},{10},'{11}',{12},{13},'{14}','{15}',{16}); select SCOPE_IDENTITY() as GamePK;", this.GameName, this.MinPlayer, this.MaxPlayer, this.Time, 
+            DsAddGameResult = DbLibraryControl.QueryDataSet(string.Format(@"insert into GameBasicInfo values (N'{0}',{1},{2},{3},{4},{5},{6},{7},
+                        N'{8}',{9},{10},'{11}',{12},{13},'{14}','{15}',{16}); select SCOPE_IDENTITY() as GamePK;", this.GameName, this.MinPlayer, this.MaxPlayer, this.Time, 
                         this.Difficulty, this.Luck, this.Strategy, this.Interaction, this.ImgName, this.RentalNumber, this.IsExtension, this.RentalStartDate,
                         this.Rent, this.Deposit, this.TeachingUrl, this.Description, this.IsOpen
                     ), "AddGameResult");

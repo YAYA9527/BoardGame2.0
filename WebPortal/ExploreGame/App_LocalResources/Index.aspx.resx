@@ -123,8 +123,14 @@
   <data name="Any" xml:space="preserve">
     <value>不拘</value>
   </data>
+  <data name="Before" xml:space="preserve">
+    <value>之前</value>
+  </data>
   <data name="Difficulty" xml:space="preserve">
     <value>困難度</value>
+  </data>
+  <data name="EditGame" xml:space="preserve">
+    <value>編輯桌遊</value>
   </data>
   <data name="EmptyData" xml:space="preserve">
     <value>無相關資料</value>
@@ -161,6 +167,12 @@
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運氣性</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="ManageExtension" xml:space="preserve">
+    <value>管理擴充</value>
   </data>
   <data name="Middle" xml:space="preserve">
     <value>中(30-60)</value>
@@ -200,6 +212,12 @@
   </data>
   <data name="RentalDate" xml:space="preserve">
     <value>租借日期</value>
+  </data>
+  <data name="RentalNum" xml:space="preserve">
+    <value>租借次數管理</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>打分數</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>

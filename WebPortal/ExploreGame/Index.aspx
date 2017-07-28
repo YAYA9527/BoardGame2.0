@@ -15,11 +15,40 @@
             debugger
             var isSelect = $("#cbSelectAll").prop("checked");
         }
+
+        function btnSearchClick() {
+            var SelectedTypeItemPKArray = new Array();
+            $.each($("#divType input[type='checkbox']:checked"), function (index, item) {
+                SelectedTypeItemPKArray.push(item.value);
+            });
+            if (SelectedTypeItemPKArray.length == 0) {
+                window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = "NULL";
+            }
+            else {
+                window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = SelectedTypeItemPKArray.join(',');
+            }
+        }
     </script>
     <style>
         /*取代Bootstrap的CSS，同分但內部>外部*/
         .checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
             margin-left: 0px;
+        }
+
+        #imgManage{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .dropdown .dropdown-menu > li > a:hover,
+        .dropdown-menu > li > a:focus {
+            background-image: none;
+            background-color: #FDD6DD;
         }
     </style>
 </head>
@@ -31,7 +60,7 @@
                 <div class="col-xs-offset-2 col-sm-offset-2">
                     <asp:Button ID="btnAddGame" runat="server" OnClick="btnAddGameClick" Text="<%$ Resources:AddGame %>" CssClass="btn btn-success" />
                     <asp:Button ID="btnExportExcel" runat="server" OnClick="btnExportExcelClick" Text="<%$ Resources:ExportExcel %>" CssClass="btn btn-success" />
-                    <asp:Button ID="btnSearch" runat="server" OnClick="btnSearchClick" Text="<%$ Resources:Search %>" CssClass="btn btn-success" />
+                    <asp:Button ID="btnSearch" runat="server" OnClientClick="btnSearchClick()" OnClick="btnSearchClick" Text="<%$ Resources:Search %>" CssClass="btn btn-success" />
                 </div>
             </div>
             <div class="row row-offset">
@@ -68,19 +97,19 @@
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="0" checked><%=GetResStr("Any")%>
+                        <input type="radio" name="rdoTime" runat="server" value="0" checked><%=GetResStr("Any")%>
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="1"><%=GetResStr("Short")%>
+                        <input type="radio" name="rdoTime" runat="server" value="1"><%=GetResStr("Short")%>
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="2"><%=GetResStr("Middle")%>
+                        <input type="radio" name="rdoTime" runat="server" value="2"><%=GetResStr("Middle")%>
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="3"><%=GetResStr("LittleLong")%>
+                        <input type="radio" name="rdoTime" runat="server" value="3"><%=GetResStr("LittleLong")%>
                     </label>
-                     <label class="radio-inline">
-                        <input type="radio" name="rdoTime" value="4"><%=GetResStr("Long")%>
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoTime" runat="server" value="4"><%=GetResStr("Long")%>
                     </label>
                 </div>
             </div>
@@ -95,7 +124,7 @@
                     <%=GetResStr("RentalDate")%>：
                 </label>
                 <div class="col-xs-6 col-sm-6">
-                    <input id="iptRentalDate" runat="server" type="date" />
+                    <input id="iptRentalDate" runat="server" type="date" />&nbsp;&nbsp;<%=GetResStr("Before")%>
                 </div>
             </div>
         </fieldset>
@@ -112,7 +141,8 @@
                                 <asp:Literal ID="ltlNo" runat="server" Text="<%$ Resources:No %>"></asp:Literal>
                             </td>
                             <td width="10%">
-                                <asp:Literal ID="ltlGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:Literal>
+                                <asp:LinkButton ID="lbGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:LinkButton>
+<%--                                <asp:Literal ID="ltlGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:Literal>--%>
                             </td>
                             <td width="10%">
                                 <asp:Literal ID="ltlGamePlayer" runat="server" Text="<%$ Resources:GamePlayer %>"></asp:Literal>
@@ -167,7 +197,28 @@
                             <%# Eval("Interaction") %>
                         </td>
                         <td>
-                            <asp:Literal ID="ltlFunctionValue" runat="server"></asp:Literal>
+                            <div class="dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <image src="../Images/Manage.png" id="imgManage" title="<%=GetResStr("Manage")%>"></image>
+                                </div>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="0"><%=GetResStr("Score")%></a>
+                                    </li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="1"><%=GetResStr("EditGame")%></a>
+                                    </li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="2"><%=GetResStr("ManageExtension")%></a>
+                                    </li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="3"><%=GetResStr("RentalNum")%></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -205,6 +256,7 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
+        <asp:HiddenField ID="hfSelectedTypePKs" runat="server" />
     </form>
 </body>
 </html>
