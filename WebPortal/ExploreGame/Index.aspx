@@ -22,7 +22,7 @@
                 SelectedTypeItemPKArray.push(item.value);
             });
             if (SelectedTypeItemPKArray.length == 0) {
-                window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = "NULL";
+                window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = "";
             }
             else {
                 window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = SelectedTypeItemPKArray.join(',');
@@ -35,7 +35,7 @@
             margin-left: 0px;
         }
 
-        #imgManage{
+        #imgManage {
             width: 40px;
             height: 40px;
             cursor: pointer;
@@ -49,6 +49,23 @@
         .dropdown-menu > li > a:focus {
             background-image: none;
             background-color: #FDD6DD;
+        }
+
+        .linkBtn, .linkBtn:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .tdLinkBtn:hover {
+            background-color: purple;
+        }
+
+        #divLastPage, #divNextPage, #divAllPage {
+            display:inline-block;
+        }
+
+        #divLastPage:hover, #divNextPage:hover{
+            background-color: purple;
         }
     </style>
 </head>
@@ -65,7 +82,7 @@
             </div>
             <div class="row row-offset">
                 <label for="txtKeyWord" class="col-xs-3 col-sm-3 label-text-right">
-                    <%=GetResStr("KeyWord")%>：
+                    <%=GetResStr("KeyWord")%>：           
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <input type="text" class="form-control" id="txtKeyWord" runat="server" placeholder="請輸入桌遊名稱..." />
@@ -93,7 +110,7 @@
             </div>
             <div class="row row-offset">
                 <label for="rdoTime" class="col-xs-3 col-sm-3 label-text-right">
-                    <%=GetResStr("GameTime")%>：
+                    <%=GetResStr("GameTime")%>：               
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <label class="radio-inline">
@@ -115,13 +132,13 @@
             </div>
             <div class="row row-offset">
                 <label for="cblType" class="col-xs-3 col-sm-3 label-text-right">
-                    <%=GetResStr("Type")%>：
+                    <%=GetResStr("Type")%>：            
                 </label>
                 <div id="divType" runat="server" class="col-xs-6 col-sm-6"></div>
             </div>
             <div class="row row-offset">
                 <label for="iptRentalDate" class="col-xs-3 col-sm-3 label-text-right">
-                    <%=GetResStr("RentalDate")%>：
+                    <%=GetResStr("RentalDate")%>：             
                 </label>
                 <div class="col-xs-6 col-sm-6">
                     <input id="iptRentalDate" runat="server" type="date" />&nbsp;&nbsp;<%=GetResStr("Before")%>
@@ -133,36 +150,49 @@
                 <HeaderTemplate>
                     <table style="text-align: center;" class="table">
                         <tr style="background-color: #449d44; color: white;">
-                            <td width="10%" id="HeaderTdSelectAll" runat="server">
+                            <td id="HeaderTdSelectAll" runat="server">
                                 <input type="checkbox" id="cbSelectAll" onchange="cbSelectAllChanged()" />
                                 <asp:Literal ID="ltlSelectAllOrNot" runat="server" Text="V / X"></asp:Literal>
                             </td>
-                            <td width="5%">
+                            <td>
                                 <asp:Literal ID="ltlNo" runat="server" Text="<%$ Resources:No %>"></asp:Literal>
                             </td>
-                            <td width="10%">
-                                <asp:LinkButton ID="lbGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:LinkButton>
-<%--                                <asp:Literal ID="ltlGameName" runat="server" Text="<%$ Resources:GameName %>"></asp:Literal>--%>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameName" runat="server" Text="<%$ Resources:GameName %>" CommandName="Sort"
+                                    CommandArgument="GBI.GameName" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGamePlayer" runat="server" Text="<%$ Resources:GamePlayer %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGamePlayer" runat="server" Text="<%$ Resources:GamePlayer %>" CommandName="Sort"
+                                    CommandArgument="GBI.MaxPlayer" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGameTime" runat="server" Text="<%$ Resources:GameTime %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameTime" runat="server" Text="<%$ Resources:GameTime %>" CommandName="Sort"
+                                    CommandArgument="GBI.Time" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGameDifficulty" runat="server" Text="<%$ Resources:Difficulty %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameDifficulty" runat="server" Text="<%$ Resources:Difficulty %>" CommandName="Sort"
+                                    CommandArgument="GBI.Difficulty" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGameLuck" runat="server" Text="<%$ Resources:Luck %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameLuck" runat="server" Text="<%$ Resources:Luck %>" CommandName="Sort"
+                                    CommandArgument="GBI.Luck" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGameStrategy" runat="server" Text="<%$ Resources:Strategy %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameStrategy" runat="server" Text="<%$ Resources:Strategy %>" CommandName="Sort"
+                                    CommandArgument="GBI.Strategy" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
-                                <asp:Literal ID="ltlGameInteraction" runat="server" Text="<%$ Resources:Interaction %>"></asp:Literal>
+                            <td class="tdLinkBtn">
+                                <asp:LinkButton ID="lbGameInteraction" runat="server" Text="<%$ Resources:Interaction %>" CommandName="Sort"
+                                    CommandArgument="GBI.Interaction" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
+                                </asp:LinkButton>
                             </td>
-                            <td width="10%">
+                            <td>
                                 <asp:Literal ID="ltlFunction" runat="server" Text="<%$ Resources:Function %>"></asp:Literal>
                             </td>
                         </tr>
@@ -252,11 +282,33 @@
                     </tr>
                 </AlternatingItemTemplate>--%>
                 <FooterTemplate>
-                    </table>
+                        <tr style="background-color: #449d44;">
+                            <td colspan="10">
+                                <div id="divLastPage">
+                                    <asp:LinkButton ID="lbLastPage" runat="server" Text="<%$ Resources:LastPage %>" CommandName="Page"
+                                        OnClick="lbClick" CssClass="linkBtn">
+                                    </asp:LinkButton>
+                                </div>
+                                <div id="divAllPage">
+
+                                </div>
+                                <div id="divNextPage">
+                                    <asp:LinkButton ID="lbNextPage" runat="server" Text="<%$ Resources:NextPage %>" CommandName="Page"
+                                        OnClick="lbClick" CssClass="linkBtn">
+                                    </asp:LinkButton>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>    
                 </FooterTemplate>
             </asp:Repeater>
         </div>
         <asp:HiddenField ID="hfSelectedTypePKs" runat="server" />
+        <asp:HiddenField ID="hfSortValue" runat="server" />
+        <asp:HiddenField ID="hfSortColumn" runat="server" />
+        <asp:HiddenField ID="hfTotalDataCount" runat="server" />
+        <asp:HiddenField ID="hfPerPageDataCount" runat="server" />
+        <asp:HiddenField ID="hfCurPage" runat="server" />
     </form>
 </body>
 </html>

@@ -14,7 +14,18 @@ public partial class ExploreGame_Index : BgwPage
     {
         if (!IsPostBack)
         {
+//            select AllData.*
+//from(
+//        select *, ROW_NUMBER() over(order by PK) as RowNum
+
+//        from GameBasicInfo
+
+//        where IsOpen = 1
+
+//     ) as AllData
+//where AllData.RowNum >= 2 and AllData.RowNum <= 2
             DataSet myBoardGameData = DbLibraryControl.QueryDataSet("select * from GameBasicInfo where IsOpen = 1", "GameBasicInfoResult");
+            hfTotalDataCount.Value = myBoardGameData.Tables["GameBasicInfoResult"].Rows.Count.ToString();
             rptBoardGame.DataSource = myBoardGameData;
             rptBoardGame.DataBind();
         }
@@ -73,6 +84,13 @@ public partial class ExploreGame_Index : BgwPage
             TimeDownLimit = 91;
         }
 
+        //列表排序預設值
+        if (string.IsNullOrEmpty(hfSortValue.Value))
+        {
+            hfSortColumn.Value = "GBI.GameName";
+            hfSortValue.Value = "asc";
+        }
+
         string SearchSql = string.Format(@"
             select distinct GBI.* 
             from GameBasicInfo as GBI 
@@ -80,13 +98,15 @@ public partial class ExploreGame_Index : BgwPage
             where (GBI.IsOpen = 1) and ('{0}' = 'NULL' or GBI.GameName like N'%{0}%') and
                        ({1} = 0 or GBI.MinPlayer <= {1}) and ({1} = 0 or GBI.MaxPlayer >= {1}) and 
                        ({2} = 0 or GBI.Time >= {2}) and ({3} = 0 or GBI.Time <= {3}) and 
-                       ('{4}' = 'NULL' or GC.TreeItemPK in ({4})) and ('{5}' = 'NULL' or GBI.RentalStartDate <= '{5}  00:00:00')",
+                       ('{4}' = 'NULL' or GC.TreeItemPK in ({4})) and ('{5}' = 'NULL' or GBI.RentalStartDate <= '{5}  00:00:00')
+            order by {6}",
              (string.IsNullOrEmpty(txtKeyWord.Value.Trim())) ? "NULL" : txtKeyWord.Value.Trim(),
              Convert.ToUInt16(ddlPlayer.SelectedValue),
              TimeDownLimit,
              TimeUpLimit,
-             hfSelectedTypePKs.Value,
-             (string.IsNullOrEmpty(iptRentalDate.Value)) ? "NULL" : iptRentalDate.Value
+             (string.IsNullOrEmpty(hfSelectedTypePKs.Value))? "NULL": hfSelectedTypePKs.Value,
+             (string.IsNullOrEmpty(iptRentalDate.Value)) ? "NULL" : iptRentalDate.Value,
+             hfSortColumn.Value + " " + hfSortValue.Value
         );
         
         DataSet mySearchData = DbLibraryControl.QueryDataSet(SearchSql, "SearchDataResult");
@@ -109,5 +129,24 @@ public partial class ExploreGame_Index : BgwPage
     protected void btnExportExcelClick(object sender, EventArgs e)
     {
 
+    }
+
+    protected void lbClick(object sender, EventArgs e)
+    {
+        LinkButton lbBtn = (LinkButton)(sender);
+        if (lbBtn.CommandName == "Sort")
+        {
+            if((hfSortColumn.Value == lbBtn.CommandArgument) &&
+                (hfSortValue.Value == "asc"))
+            {
+                hfSortValue.Value = "desc";
+            }
+            else
+            {
+                hfSortValue.Value = "asc";
+            }
+            hfSortColumn.Value = lbBtn.CommandArgument;
+            btnSearchClick(null, null);
+        }
     }
 }

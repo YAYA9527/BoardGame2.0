@@ -159,6 +159,9 @@
   <data name="KeyWord" xml:space="preserve">
     <value>關鍵字</value>
   </data>
+  <data name="LastPage" xml:space="preserve">
+    <value>上一頁</value>
+  </data>
   <data name="LittleLong" xml:space="preserve">
     <value>略長(60-90)</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="Middle" xml:space="preserve">
     <value>中(30-60)</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>下一頁</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>序號</value>
