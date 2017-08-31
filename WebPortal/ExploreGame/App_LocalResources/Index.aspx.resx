@@ -126,6 +126,9 @@
   <data name="Before" xml:space="preserve">
     <value>之前</value>
   </data>
+  <data name="DataTotal" xml:space="preserve">
+    <value>總筆數：{0},  </value>
+  </data>
   <data name="Difficulty" xml:space="preserve">
     <value>困難度</value>
   </data>
@@ -186,6 +189,21 @@
   <data name="No" xml:space="preserve">
     <value>序號</value>
   </data>
+  <data name="PageInfo" xml:space="preserve">
+    <value>目前頁數：{0} / {1}, 每頁顯示</value>
+  </data>
+  <data name="PerPage10" xml:space="preserve">
+    <value>10筆</value>
+  </data>
+  <data name="PerPage15" xml:space="preserve">
+    <value>15筆</value>
+  </data>
+  <data name="PerPage20" xml:space="preserve">
+    <value>20筆</value>
+  </data>
+  <data name="PerPage5" xml:space="preserve">
+    <value>5筆</value>
+  </data>
   <data name="Player1" xml:space="preserve">
     <value>1人</value>
   </data>
@@ -236,5 +254,8 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>類型</value>
+  </data>
+  <data name="Use" xml:space="preserve">
+    <value>套用</value>
   </data>
 </root>

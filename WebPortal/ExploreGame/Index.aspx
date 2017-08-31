@@ -60,12 +60,17 @@
             background-color: purple;
         }
 
-        #divLastPage, #divNextPage, #divAllPage {
-            display:inline-block;
+        #divLastPage, #divNextPage {
+            display: inline-block;
         }
 
-        #divLastPage:hover, #divNextPage:hover{
+        #divLastPage:hover, #divNextPage:hover {
             background-color: purple;
+        }
+
+        .per-page-control {
+            display:inline-block;
+            width:9%;
         }
     </style>
 </head>
@@ -145,6 +150,17 @@
                 </div>
             </div>
         </fieldset>
+        <div style="font-size: 0.9em;margin-bottom:3px;">
+            <asp:Literal ID="ltlDataTotal" runat="server"></asp:Literal>
+            <asp:Literal ID="ltlPageInfo" runat="server"></asp:Literal>
+            <asp:DropDownList ID="ddlPerPage" runat="server" CssClass="form-control per-page-control">
+                <asp:ListItem Text="<%$ Resources:PerPage5 %>" Value="5"></asp:ListItem>
+                <asp:ListItem Text="<%$ Resources:PerPage10 %>" Value="10"></asp:ListItem>
+                <asp:ListItem Text="<%$ Resources:PerPage15 %>" Value="15"></asp:ListItem>
+                <asp:ListItem Text="<%$ Resources:PerPage20 %>" Value="20"></asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="btnPerPage" runat="server" OnClick="btnPerPageClick" Text="<%$ Resources:Use %>" CssClass="btn btn-success" />
+        </div>
         <div class="table-responsive">
             <asp:Repeater ID="rptBoardGame" runat="server" OnItemDataBound="rptBoardGame_ItemDataBound">
                 <HeaderTemplate>
@@ -161,36 +177,43 @@
                                 <asp:LinkButton ID="lbGameName" runat="server" Text="<%$ Resources:GameName %>" CommandName="Sort"
                                     CommandArgument="GBI.GameName" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameNameSort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGamePlayer" runat="server" Text="<%$ Resources:GamePlayer %>" CommandName="Sort"
                                     CommandArgument="GBI.MaxPlayer" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGamePlayerSort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGameTime" runat="server" Text="<%$ Resources:GameTime %>" CommandName="Sort"
                                     CommandArgument="GBI.Time" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameTimeSort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGameDifficulty" runat="server" Text="<%$ Resources:Difficulty %>" CommandName="Sort"
                                     CommandArgument="GBI.Difficulty" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameDifficultySort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGameLuck" runat="server" Text="<%$ Resources:Luck %>" CommandName="Sort"
                                     CommandArgument="GBI.Luck" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameLuckSort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGameStrategy" runat="server" Text="<%$ Resources:Strategy %>" CommandName="Sort"
                                     CommandArgument="GBI.Strategy" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameStrategySort" runat="server"></asp:Literal>
                             </td>
                             <td class="tdLinkBtn">
                                 <asp:LinkButton ID="lbGameInteraction" runat="server" Text="<%$ Resources:Interaction %>" CommandName="Sort"
                                     CommandArgument="GBI.Interaction" OnClick="lbClick" OnClientClick="btnSearchClick()" CssClass="linkBtn">
                                 </asp:LinkButton>
+                                <asp:Literal ID="ltlGameInteractionSort" runat="server"></asp:Literal>
                             </td>
                             <td>
                                 <asp:Literal ID="ltlFunction" runat="server" Text="<%$ Resources:Function %>"></asp:Literal>
@@ -203,7 +226,7 @@
                             <asp:CheckBox runat="server" ID="cbSelect" />
                         </td>
                         <td>
-                            <%# Container.ItemIndex+1 %>
+                            <%# Eval("RowNum") %>
                         </td>
                         <td>
                             <%# Eval("GameName") %>
@@ -250,7 +273,7 @@
                                 </ul>
                             </div>
                         </td>
-                    </tr>
+                    </tr>                    
                 </ItemTemplate>
                 <%--<SeparatorTemplate>
                     <tr>
@@ -282,23 +305,25 @@
                     </tr>
                 </AlternatingItemTemplate>--%>
                 <FooterTemplate>
-                        <tr style="background-color: #449d44;">
-                            <td colspan="10">
-                                <div id="divLastPage">
-                                    <asp:LinkButton ID="lbLastPage" runat="server" Text="<%$ Resources:LastPage %>" CommandName="Page"
-                                        OnClick="lbClick" CssClass="linkBtn">
-                                    </asp:LinkButton>
-                                </div>
-                                <div id="divAllPage">
-
-                                </div>
-                                <div id="divNextPage">
-                                    <asp:LinkButton ID="lbNextPage" runat="server" Text="<%$ Resources:NextPage %>" CommandName="Page"
-                                        OnClick="lbClick" CssClass="linkBtn">
-                                    </asp:LinkButton>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr id="trEmptyData" runat="server">
+                        <td colspan="10">
+                            <asp:Literal ID="ltlEmptyData" runat="server" Text="<%$ Resources:EmptyData %>"></asp:Literal>
+                        </td>
+                    </tr>
+                    <tr style="background-color: #449d44;">
+                        <td colspan="10">                            
+                            <div id="divLastPage">
+                                <asp:LinkButton ID="lbLastPage" runat="server" Text="<%$ Resources:LastPage %>" CommandName="Page"
+                                    OnClick="lbClick" CssClass="linkBtn" CommandArgument="Last">
+                                </asp:LinkButton>
+                            </div>
+                            <div id="divNextPage">
+                                <asp:LinkButton ID="lbNextPage" runat="server" Text="<%$ Resources:NextPage %>" CommandName="Page"
+                                    OnClick="lbClick" CssClass="linkBtn" CommandArgument="Next">
+                                </asp:LinkButton>
+                            </div>
+                        </td>
+                    </tr>
                     </table>    
                 </FooterTemplate>
             </asp:Repeater>
@@ -309,6 +334,7 @@
         <asp:HiddenField ID="hfTotalDataCount" runat="server" />
         <asp:HiddenField ID="hfPerPageDataCount" runat="server" />
         <asp:HiddenField ID="hfCurPage" runat="server" />
+        <asp:HiddenField ID="hfTotalPage" runat="server" />
     </form>
 </body>
 </html>
