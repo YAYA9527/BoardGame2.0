@@ -12,8 +12,17 @@
     <script src="../Scripts/bootstrap.min.js"></script>
     <script>
         function cbSelectAllChanged() {
-            debugger
             var isSelect = $("#cbSelectAll").prop("checked");
+            if (isSelect) {                
+                $.each($("#GameTable input[type='checkbox']"), function (index, item) {
+                    item.checked = true;
+                });
+            }
+            else {
+                $.each($("#GameTable input[type='checkbox']"), function (index, item) {
+                    item.checked = false;
+                });
+            }
         }
 
         function btnSearchClick() {
@@ -26,6 +35,28 @@
             }
             else {
                 window.document.getElementById('<%=hfSelectedTypePKs.ClientID%>').value = SelectedTypeItemPKArray.join(',');
+            }
+        }
+
+        function CheckDelete() {
+            var DeleteMsg = "<%=GetResStr("DeleteMsg")%>";
+            var SelectedDelItemPKArray = new Array();
+            if (confirm(DeleteMsg)) {
+                $.each($("#GameTable input[type='checkbox']:checked"), function (index, item) {
+                    SelectedDelItemPKArray.push(item.value);
+                });
+                if (SelectedDelItemPKArray.length == 0) {
+                    window.document.getElementById('<%=hfDelPKs.ClientID%>').value = "";
+                    alert("<%=GetResStr("DelItemEmptyError")%>");
+                    return false;
+                }
+                else {
+                    window.document.getElementById('<%=hfDelPKs.ClientID%>').value = SelectedDelItemPKArray.join(',');
+                    return true;
+                }
+            }
+            else {
+                return false;
             }
         }
     </script>
@@ -160,11 +191,13 @@
                 <asp:ListItem Text="<%$ Resources:PerPage20 %>" Value="20"></asp:ListItem>
             </asp:DropDownList>
             <asp:Button ID="btnPerPage" runat="server" OnClick="btnPerPageClick" Text="<%$ Resources:Use %>" CssClass="btn btn-success" />
+            <asp:Button ID="btnTableMode" runat="server" CssClass="btn btn-success" OnClick="btnTableModeClick"/>
+            <asp:Button ID="btnDelete" runat="server" Text="<%$ Resources:Delete %>" CssClass="btn btn-success" OnClientClick="if(!CheckDelete()) return false;" OnClick="btnDeleteClick"/>
         </div>
-        <div class="table-responsive">
+        <div id="divListTable" class="table-responsive" runat="server">
             <asp:Repeater ID="rptBoardGame" runat="server" OnItemDataBound="rptBoardGame_ItemDataBound">
                 <HeaderTemplate>
-                    <table style="text-align: center;" class="table">
+                    <table id="GameTable" style="text-align: center;" class="table table-hover">
                         <tr style="background-color: #449d44; color: white;">
                             <td id="HeaderTdSelectAll" runat="server">
                                 <input type="checkbox" id="cbSelectAll" onchange="cbSelectAllChanged()" />
@@ -223,7 +256,7 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:CheckBox runat="server" ID="cbSelect" />
+                            <asp:CheckBox runat="server" ID="cbSelect"  />
                         </td>
                         <td>
                             <%# Eval("RowNum") %>
@@ -328,6 +361,21 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
+        <div id="divPictureTable" runat="server">
+            <asp:Repeater ID="rptBoardGamePMode" runat="server" OnItemDataBound="rptBoardGamePMode_ItemDataBound">
+                <ItemTemplate>
+                    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div title="" itemprop="Photo">
+                                    <img src="../Images/office.png" class="img-responsive"></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
         <asp:HiddenField ID="hfSelectedTypePKs" runat="server" />
         <asp:HiddenField ID="hfSortValue" runat="server" />
         <asp:HiddenField ID="hfSortColumn" runat="server" />
@@ -335,6 +383,8 @@
         <asp:HiddenField ID="hfPerPageDataCount" runat="server" />
         <asp:HiddenField ID="hfCurPage" runat="server" />
         <asp:HiddenField ID="hfTotalPage" runat="server" />
+        <asp:HiddenField ID="hfTableMode" runat="server" />
+        <asp:HiddenField ID="hfDelPKs" runat="server" />
     </form>
 </body>
 </html>

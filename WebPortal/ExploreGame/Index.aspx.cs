@@ -21,6 +21,10 @@ public partial class ExploreGame_Index : BgwPage
             hfPerPageDataCount.Value = "5";
             hfCurPage.Value = "1";
             hfTotalPage.Value = "1";
+            hfTableMode.Value = "0";
+            btnTableMode.Text = GetLocalResourceObject("PictureMode").ToString();
+            divListTable.Visible = true;
+            divPictureTable.Visible = false;
             btnSearchClick(null, null);
         }
 
@@ -40,7 +44,7 @@ public partial class ExploreGame_Index : BgwPage
             cblType.InputAttributes["value"] = row["PK"].ToString();
             lblType.Controls.Add(cblType);
             divType.Controls.Add(lblType);
-        }
+        }        
     }
 
     protected void rptBoardGame_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -138,8 +142,10 @@ public partial class ExploreGame_Index : BgwPage
         {
             DataRowView drv = e.Item.DataItem as DataRowView;
             Literal ltlGamePlayerValue = e.Item.FindControl("ltlGamePlayerValue") as Literal;
+            CheckBox cbSelect = e.Item.FindControl("cbSelect") as CheckBox;
 
             ltlGamePlayerValue.Text = drv["MinPlayer"].ToString() + "-" + drv["MaxPlayer"].ToString();
+            cbSelect.InputAttributes["value"] = drv["PK"].ToString();
         }
 
         if (e.Item.ItemType == ListItemType.Footer)
@@ -180,6 +186,19 @@ public partial class ExploreGame_Index : BgwPage
         }
     }
 
+    protected void rptBoardGamePMode_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {   
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            //DataRowView drv = e.Item.DataItem as DataRowView;
+            //Literal ltlGamePlayerValue = e.Item.FindControl("ltlGamePlayerValue") as Literal;
+            //CheckBox cbSelect = e.Item.FindControl("cbSelect") as CheckBox;
+
+            //ltlGamePlayerValue.Text = drv["MinPlayer"].ToString() + "-" + drv["MaxPlayer"].ToString();
+            //cbSelect.InputAttributes["value"] = drv["PK"].ToString();
+        }       
+    }
+
     protected void btnSearchClick(object sender, EventArgs e)
     {
         //時間上下限
@@ -207,7 +226,7 @@ public partial class ExploreGame_Index : BgwPage
             }
         }
 
-        //搜尋後需顯示第一頁
+        //顯示第一頁
         if (sender != null)
         {
             hfCurPage.Value = "1";
@@ -237,7 +256,8 @@ public partial class ExploreGame_Index : BgwPage
         hfTotalPage.Value = ((hfTotalDataCount.Value == "0") ? "1" : (Math.Ceiling(Convert.ToDouble(hfTotalDataCount.Value) / Convert.ToDouble(hfPerPageDataCount.Value)).ToString()));
         if (mySearchData.Tables["SearchDataResult"].Rows.Count == 0)
         {
-            rptBoardGame.DataSource = "";            
+            rptBoardGame.DataSource = "";
+            rptBoardGamePMode.DataSource = "";      
         }
         else
         {
@@ -246,8 +266,11 @@ public partial class ExploreGame_Index : BgwPage
             List<DataRow> SearchDataResultList = mySearchData.Tables["SearchDataResult"].Rows.Cast<DataRow>().ToList();
             rptBoardGame.DataSource = SearchDataResultList.Where(row => Convert.ToInt32(row["RowNum"]) >= RowStart &&
                 Convert.ToInt32(row["RowNum"]) <= RowEnd).CopyToDataTable();
+            rptBoardGamePMode.DataSource = SearchDataResultList.Where(row => Convert.ToInt32(row["RowNum"]) >= RowStart &&
+                Convert.ToInt32(row["RowNum"]) <= RowEnd).CopyToDataTable();
         }
         rptBoardGame.DataBind();
+        rptBoardGamePMode.DataBind();
         ltlDataTotal.Text = string.Format(GetLocalResourceObject("DataTotal").ToString(), hfTotalDataCount.Value);
         ltlPageInfo.Text = string.Format(GetLocalResourceObject("PageInfo").ToString(), hfCurPage.Value, hfTotalPage.Value);               
     }
@@ -255,6 +278,40 @@ public partial class ExploreGame_Index : BgwPage
     protected void btnAddGameClick(object sender, EventArgs e)
     {
         Response.Redirect("~/ExploreGame/AddEditGame.aspx?Action=Add");
+    }
+
+    protected void btnTableModeClick(object sender, EventArgs e)
+    {      
+        if (hfTableMode.Value == "0")
+        {
+            hfTableMode.Value = "1";
+            btnTableMode.Text = GetLocalResourceObject("ListMode").ToString();
+            divListTable.Visible = false;
+            divPictureTable.Visible = true;
+        }
+        else
+        {
+            hfTableMode.Value = "0";
+            btnTableMode.Text = GetLocalResourceObject("PictureMode").ToString();
+            divListTable.Visible = true;
+            divPictureTable.Visible = false;
+        }
+    }
+
+    protected void btnDeleteClick(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(hfDelPKs.Value))
+        {
+            DbLibraryControl.Query(string.Format(@"
+                delete from ScoreRecord where GamePK in ({0});
+                delete from GameExtension where GamePK in ({0});
+                delete from GameCategory where GamePK in ({0});
+                delete from GameBasicInfo where PK in ({0});"
+            , hfDelPKs.Value));
+            hfDelPKs.Value = "";
+            btnSearchClick(sender, e);
+            Response.Write("<script>alert('" + GetLocalResourceObject("DeleteSuccess").ToString() + "')</script>");
+        }
     }
 
     protected void btnExportExcelClick(object sender, EventArgs e)
@@ -295,7 +352,6 @@ public partial class ExploreGame_Index : BgwPage
     protected void btnPerPageClick(object sender, EventArgs e)
     {
         hfPerPageDataCount.Value = ddlPerPage.SelectedValue;
-        hfCurPage.Value = "1";
-        btnSearchClick(null, null);        
+        btnSearchClick(sender, e);        
     }
 }

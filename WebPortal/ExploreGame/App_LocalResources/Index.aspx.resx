@@ -129,6 +129,18 @@
   <data name="DataTotal" xml:space="preserve">
     <value>總筆數：{0},  </value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>勾選刪除</value>
+  </data>
+  <data name="DeleteMsg" xml:space="preserve">
+    <value>是否確定要刪除?</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>刪除成功</value>
+  </data>
+  <data name="DelItemEmptyError" xml:space="preserve">
+    <value>尚未選取項目</value>
+  </data>
   <data name="Difficulty" xml:space="preserve">
     <value>困難度</value>
   </data>
@@ -164,6 +176,9 @@
   </data>
   <data name="LastPage" xml:space="preserve">
     <value>上一頁</value>
+  </data>
+  <data name="ListMode" xml:space="preserve">
+    <value>列表模式</value>
   </data>
   <data name="LittleLong" xml:space="preserve">
     <value>略長(60-90)</value>
@@ -203,6 +218,9 @@
   </data>
   <data name="PerPage5" xml:space="preserve">
     <value>5筆</value>
+  </data>
+  <data name="PictureMode" xml:space="preserve">
+    <value>圖片模式</value>
   </data>
   <data name="Player1" xml:space="preserve">
     <value>1人</value>

@@ -43,6 +43,37 @@ public class GameBasicInfoStorage
         set { _IsOpen = value; }
     }
 
+    public GameBasicInfoStorage()
+    {
+    }
+
+    public GameBasicInfoStorage(int PK)
+    {
+        DbLibrary DbLibraryControl = new DbLibrary();
+        DataTable DtGameBasicInfoResult = new DataTable();
+        DtGameBasicInfoResult = DbLibraryControl.QueryDataSet(string.Format(@"select * from GameBasicInfo where PK = {0}", PK), "GameBasicInfoResult").Tables["GameBasicInfoResult"];
+        if (DtGameBasicInfoResult.Rows.Count != 0)
+        {
+            this.GameName = DtGameBasicInfoResult.Rows[0]["GameName"].ToString();
+            this.MinPlayer = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["MinPlayer"]);
+            this.MaxPlayer = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["MaxPlayer"]);
+            this.Time = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Time"]);
+            this.Difficulty = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Difficulty"]);
+            this.Luck = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Luck"]);
+            this.Strategy = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Strategy"]);
+            this.Interaction = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Interaction"]);
+            this.ImgName = DtGameBasicInfoResult.Rows[0]["ImgName"].ToString();
+            this.RentalNumber = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["RentalNumber"]);
+            this.IsExtension = Convert.ToUInt16(DtGameBasicInfoResult.Rows[0]["IsExtension"]);
+            this.RentalStartDate = Convert.ToDateTime(DtGameBasicInfoResult.Rows[0]["RentalStartDate"]).ToString("yyyy-MM-dd");
+            this.Rent = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Rent"]);
+            this.Deposit = Convert.ToInt16(DtGameBasicInfoResult.Rows[0]["Deposit"]);
+            this.TeachingUrl = DtGameBasicInfoResult.Rows[0]["TeachingUrl"].ToString();
+            this.Description = DtGameBasicInfoResult.Rows[0]["Description"].ToString();
+            this.IsOpen = Convert.ToUInt16(DtGameBasicInfoResult.Rows[0]["IsOpen"]);
+        }
+    }
+  
     public string SaveAsNew(string Program)
     {
         DbLibrary DbLibraryControl = new DbLibrary();
