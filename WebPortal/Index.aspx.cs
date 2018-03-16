@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Index : System.Web.UI.Page
+public partial class Index : BgwPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,8 +14,8 @@ public partial class Index : System.Web.UI.Page
         }
     }
 
-    protected void Unnamed_Click(object sender, EventArgs e)
+    protected void btnLoginClick(object sender, EventArgs e)
     {
-        Response.Redirect("~/ExploreGame/Index.aspx");
+        //Response.Redirect("~/ExploreGame/Index.aspx");
     }
 }
